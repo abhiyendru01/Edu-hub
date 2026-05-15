@@ -240,7 +240,21 @@ const Register = () => {
                         )}
                     </div>
 
-                    <div className={`input-group ${touched.email && errors.email ? 'input-error' : ''} ${touched.email && !errors.email && email ? 'input-valid' : ''}`}>
+                    <div
+  className={`input-group 
+    ${
+      touched.email &&
+      !/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[A-Za-z]{2,}$/.test(email)
+        ? 'input-error'
+        : ''
+    }
+    ${
+      touched.email &&
+      /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[A-Za-z]{3,}$/.test(email)
+        ? 'input-valid'
+        : ''
+    }`}
+>
                         <label htmlFor="email">Email</label>
                         <div className="input-wrapper">
                             <input
@@ -259,9 +273,10 @@ const Register = () => {
                                 aria-describedby={touched.email && errors.email ? 'email-error' : undefined}
                                 autoComplete="email"
                             />
-                            {touched.email && !errors.email && email && (
-                                <span className="input-check-icon">✓</span>
-                            )}
+                            {touched.email &&
+ /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[A-Za-z]{2,}$/.test(email) && (
+    <span className="input-check-icon">✓</span>
+)}
                         </div>
                         {touched.email && errors.email && (
                             <span id="email-error" className="error-message" role="alert">{errors.email}</span>

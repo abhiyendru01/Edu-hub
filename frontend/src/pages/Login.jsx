@@ -287,8 +287,8 @@ const Login = () => {
                 textDecoration: "none",
                 width: "100%",
                 background:
-                    "linear-gradient(135deg, #7C3AED, #A855F7)",
-                color: "white",
+                    "linear-gradient(135deg, #b6952aff, #f7d955ff)",
+                color: "black",
                 padding: "14px 20px",
                 borderRadius: "14px",
                 fontWeight: "600",

@@ -2,10 +2,10 @@
 
 /* Import gamification colors */
 :root {
-    --auth-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    --auth-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    --auth-primary: linear-gradient(135deg, #b6952aff 0%, rgb(180, 160, 72) 100%);
+    --auth-secondary: linear-gradient(135deg, #fbd793 0%, #f5576c 100%);
     --auth-success: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
-    --auth-glass: rgba(255, 255, 255, 0.1);
+    --auth-glass: rgba(0, 0, 0, 0.274);
     --auth-border: rgba(255, 255, 255, 0.2);
     --auth-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
     --auth-text-primary: var(--text-color, #ffffff);
@@ -21,7 +21,7 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: var(--bg-gradient, linear-gradient(135deg, #1e3c72 0%, #2a5298 100%));
+    background: var(--bg-gradient, linear-gradient(135deg, #725e1e 0%, #988d2a 100%));
     display: flex;
     align-items: center;
     justify-content: center;
@@ -40,7 +40,7 @@
     height: 80px;
     border: 3px solid rgba(255, 255, 255, 0.1);
     border-top: 3px solid #667eea;
-    border-right: 3px solid #764ba2;
+    border-right: 3px solid #161418;
     border-radius: 50%;
     animation: spinClockwise 1.5s linear infinite;
     filter: drop-shadow(0 0 10px rgba(102, 126, 234, 0.3));
@@ -53,7 +53,7 @@
     width: 50px;
     height: 50px;
     border: 2px solid rgba(255, 255, 255, 0.1);
-    border-bottom: 2px solid #f093fb;
+    border-bottom: 2px solid #ddbb4c;
     border-left: 2px solid #4facfe;
     border-radius: 50%;
     animation: spinCounterClockwise 1s linear infinite;
@@ -133,7 +133,7 @@
     width: 100vw;
     height: 100vh;
     overflow: hidden;
-    background: var(--bg-gradient, linear-gradient(135deg, #1e3c72 0%, #2a5298 100%));
+    background: var(--bg-gradient, linear-gradient(135deg, #03060c 0%, #000000 100%));
     margin: 0;
     box-sizing: border-box;
     z-index: 1000;
@@ -147,9 +147,9 @@
     right: 0;
     bottom: 0;
     background:
-        radial-gradient(circle at 20% 80%, rgba(102, 126, 234, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(240, 147, 251, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 40% 40%, rgba(79, 172, 254, 0.1) 0%, transparent 50%);
+        radial-gradient(circle at 20% 80%, rgba(0, 0, 0, 0.637) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(238, 182, 0, 0.151) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(156, 149, 51, 0.1) 0%, transparent 50%);
     z-index: 1;
 }
 
@@ -175,7 +175,7 @@
 .floating-orb.orb-1 {
     width: 60px;
     height: 60px;
-    background: var(--auth-primary);
+    background: #c9c950;
     top: 20%;
     left: 10%;
     animation-delay: 0s;
@@ -184,7 +184,7 @@
 .floating-orb.orb-2 {
     width: 40px;
     height: 40px;
-    background: var(--auth-secondary);
+    background: #ffffff;
     top: 60%;
     right: 15%;
     animation-delay: -2s;
@@ -193,7 +193,7 @@
 .floating-orb.orb-3 {
     width: 80px;
     height: 80px;
-    background: var(--auth-success);
+    background: #c2a93adc;
     bottom: 30%;
     left: 20%;
     animation-delay: -4s;
@@ -323,7 +323,7 @@
 }
 
 .input-group.input-error input {
-    border-color: #f5576c;
+    border-color: #b90019;
     background: rgba(245, 87, 108, 0.1);
 }
 
@@ -334,7 +334,7 @@
 
 .input-group input:focus {
     outline: none;
-    border-color: #667eea;
+    border-color: #c9c950;
     background: rgba(255, 255, 255, 0.08);
     box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
     transform: translateY(-1px);
@@ -467,13 +467,13 @@
 /* Primary Button */
 .auth-btn.primary {
     background: var(--auth-primary);
-    color: white;
-    box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
+    color: rgb(43, 43, 43);
+    box-shadow: 0 4px 20px rgba(7, 5, 0, 0.3);
 }
 
 .auth-btn.primary:hover:not(:disabled) {
     transform: translateY(-2px);
-    box-shadow: 0 8px 30px rgba(102, 126, 234, 0.4);
+    box-shadow: 0 8px 30px rgba(66, 55, 22, 0.4);
 }
 
 .auth-btn.primary:active:not(:disabled) {
@@ -580,14 +580,14 @@
 }
 
 .auth-footer a {
-    color: #667eea;
+    color: #c9c9be;
     text-decoration: none;
     font-weight: 600;
     transition: all 0.3s ease;
 }
 
 .auth-footer a:hover {
-    color: #764ba2;
+    color: #ffffff;
     text-decoration: underline;
 }
 
