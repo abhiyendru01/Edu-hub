@@ -339,6 +339,11 @@ const Sidebar = ({ isOpen = false, onClose }) => {
                                     <Link to="/gamification" onClick={handleLinkClick}>🎮 Challenges & Tournaments</Link>
                                 </NavModule>
 
+                                <NavModule title="AI Tools" icon="🤖" defaultExpanded={false} delay={0.9}>
+                                    <Link to="/ai-study-buddy" onClick={handleLinkClick}>🤖 AI Study Buddy</Link>
+                                    <Link to="/real-time-quiz" onClick={handleLinkClick}>⚡ Real-Time Quiz</Link>
+                                </NavModule>
+
                                 {/* 4. Support Module */}
                                 <NavModule title="Support" icon="📄" defaultExpanded={false} delay={0.9}>
                                     <Link to="/help-guide" onClick={handleLinkClick}>📚 Help Guide</Link>

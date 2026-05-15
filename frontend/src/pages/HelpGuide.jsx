@@ -50,7 +50,7 @@ const HelpGuide = () => {
             title: 'Website Overview',
             icon: '🏠',
             content: {
-                description: 'QuizNest is your ultimate learning companion! Think of it as your personal study buddy that helps you learn through interactive quizzes, track your progress, and compete with friends. Our platform combines gamification, AI-powered insights, and social learning to make education engaging and effective.',
+                description: 'EduHub is your ultimate learning companion! Think of it as your personal study buddy that helps you learn through interactive quizzes, track your progress, and compete with friends. Our platform combines gamification, AI-powered insights, and social learning to make education engaging and effective.',
                 features: [
                     '📚 Take unlimited quizzes on various topics',
                     '📊 Advanced analytics and progress tracking',
@@ -127,10 +127,10 @@ const HelpGuide = () => {
         },
         {
             id: 'how-to-use',
-            title: 'How to Use QuizNest',
+            title: 'How to Use EduHub',
             icon: '🎯',
             content: {
-                description: 'Follow these simple steps to get the most out of QuizNest:',
+                description: 'Follow these simple steps to get the most out of EduHub:',
                 steps: [
                     {
                         step: 1,
@@ -207,7 +207,7 @@ const HelpGuide = () => {
             title: 'Features Guide',
             icon: '✨',
             content: {
-                description: 'Explore all the amazing features QuizNest has to offer:',
+                description: 'Explore all the amazing features EduHub has to offer:',
                 features: [
                     {
                         name: '📊 Dashboard',
@@ -235,11 +235,11 @@ const HelpGuide = () => {
                     },
                     {
                         name: '🎨 Themes',
-                        description: 'Customize the look and feel of QuizNest with beautiful themes and color schemes.'
+                        description: 'Customize the look and feel of EduHub with beautiful themes and color schemes.'
                     },
                     {
                         name: '📱 Mobile App',
-                        description: 'Access QuizNest on your phone with our responsive design and PWA features.'
+                        description: 'Access EduHub on your phone with our responsive design and PWA features.'
                     }
                 ]
             }
@@ -249,7 +249,7 @@ const HelpGuide = () => {
             title: 'Tips & Tricks',
             icon: '💡',
             content: {
-                description: 'Get the most out of QuizNest with these helpful tips:',
+                description: 'Get the most out of EduHub with these helpful tips:',
                 tips: [
                     {
                         category: '🎯 Learning Effectively',
@@ -295,7 +295,7 @@ const HelpGuide = () => {
             title: 'Advanced Features',
             icon: '🚀',
             content: {
-                description: 'Discover the powerful advanced features that make QuizNest stand out from other learning platforms:',
+                description: 'Discover the powerful advanced features that make EduHub stand out from other learning platforms:',
                 features: [
                     {
                         name: '🤖 AI Study Buddy',
@@ -371,11 +371,11 @@ const HelpGuide = () => {
             title: 'Mobile & PWA Features',
             icon: '📱',
             content: {
-                description: 'QuizNest works seamlessly across all devices with our Progressive Web App technology:',
+                description: 'EduHub works seamlessly across all devices with our Progressive Web App technology:',
                 features: [
                     {
                         name: '📱 Install as App',
-                        description: 'Add QuizNest to your home screen for a native app experience. Works on iOS, Android, and desktop.'
+                        description: 'Add EduHub to your home screen for a native app experience. Works on iOS, Android, and desktop.'
                     },
                     {
                         name: '🌐 Offline Mode',
@@ -601,7 +601,7 @@ const HelpGuide = () => {
                     transition={{ duration: 0.6 }}
                     className="help-title"
                 >
-                    📚 QuizNest Help Guide
+                    📚 EduHub Help Guide
                 </motion.h1>
                 <motion.p
                     initial={{ opacity: 0, y: -10 }}
@@ -609,7 +609,7 @@ const HelpGuide = () => {
                     transition={{ duration: 0.6, delay: 0.2 }}
                     className="help-subtitle"
                 >
-                    Everything you need to know about QuizNest in simple, easy-to-understand language
+                    Everything you need to know about EduHub in simple, easy-to-understand language
                 </motion.p>
             </div>
 

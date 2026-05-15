@@ -428,7 +428,7 @@ const InstructorDashboard = () => {
                         >
                             📊
                         </motion.span>
-                        Admin Dashboard
+                        Instructor Dashboard
                     </motion.h1>
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}

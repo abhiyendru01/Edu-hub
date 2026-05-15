@@ -85,7 +85,7 @@ instance.interceptors.response.use(
                 position: fixed;
                 top: 20px;
                 right: 20px;
-                background: rgba(255, 107, 107, 0.95);
+                background: rgba(129, 6, 6, 0.36);
                 backdrop-filter: blur(10px);
                 color: white;
                 padding: 16px 24px;

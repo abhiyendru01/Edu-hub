@@ -22,8 +22,11 @@ router.use(verifyToken);
 // Friend system routes
 router.post("/friends/request", clearCacheByPattern("/api/friends"), sendFriendRequest);
 router.post("/friends/respond", clearCacheByPattern("/api/friends"), respondToFriendRequest);
-router.get("/friends", cache, getFriends);
-router.get("/friends/requests", cache, getPendingRequests);
+router.get("/friends", getFriends);
+router.get(
+    "/friends/requests",
+    getPendingRequests
+);
 router.delete("/friends/:friendId", clearCacheByPattern("/api/friends"), removeFriend);
 router.get("/friends/:friendId/progress", cache, getFriendProgress);
 

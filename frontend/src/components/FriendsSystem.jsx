@@ -18,32 +18,112 @@ const FriendsSystem = () => {
     const { notification, showSuccess, showError, hideNotification } = useNotification();
 
     const fetchFriends = useCallback(async () => {
-        try {
-            const response = await axios.get('/api/social/friends');
-            setFriends(response.data.friends);
-        } catch (error) {
-            console.error('Error fetching friends:', error);
-            showError('Failed to load friends');
-        }
-    }, [showError]);
 
-    const fetchPendingRequests = useCallback(async () => {
-        try {
-            const response = await axios.get('/api/social/friends/requests');
-            setPendingRequests(response.data);
-        } catch (error) {
-            console.error('Error fetching requests:', error);
-        }
-    }, []);
+    try {
 
-    const fetchBlockedUsers = useCallback(async () => {
-        try {
-            const response = await axios.get('/api/social/blocked');
-            setBlockedUsers(response.data.blockedUsers);
-        } catch (error) {
-            console.error('Error fetching blocked users:', error);
-        }
-    }, []);
+        const response = await axios.get(
+            "/api/social/friends"
+        );
+
+        console.log(
+            "FRIENDS RESPONSE:",
+            response
+        );
+
+        setFriends(
+
+            Array.isArray(
+                response?.data?.friends
+            )
+
+                ? response.data.friends
+
+                : []
+        );
+
+    } catch (error) {
+
+        console.error(
+            "Error fetching friends:",
+            error
+        );
+
+        showError(
+            "Failed to load friends"
+        );
+    }
+
+}, [showError]);
+
+    const fetchPendingRequests =
+    useCallback(async () => {
+
+    try {
+
+        const response =
+            await axios.get(
+                "/api/social/friends/requests"
+            );
+
+        console.log(
+            "REQUESTS RESPONSE:",
+            response
+        );
+
+        setPendingRequests({
+
+            sent:
+                response?.data?.sent || [],
+
+            received:
+                response?.data?.received || []
+        });
+
+    } catch (error) {
+
+        console.error(
+            "Error fetching requests:",
+            error
+        );
+    }
+
+}, []);
+
+    const fetchBlockedUsers =
+    useCallback(async () => {
+
+    try {
+
+        const response =
+            await axios.get(
+                "/api/social/blocked"
+            );
+
+        console.log(
+            "BLOCKED RESPONSE:",
+            response
+        );
+
+        setBlockedUsers(
+
+            Array.isArray(
+                response?.data?.blockedUsers
+            )
+
+                ? response.data.blockedUsers
+
+                : []
+        );
+
+    } catch (error) {
+
+        console.error(
+            "Error fetching blocked users:",
+            error
+        );
+    }
+
+}, []);
 
     const searchUsers = useCallback(async () => {
         if (searchQuery.length < 2) {
@@ -54,7 +134,16 @@ const FriendsSystem = () => {
         setLoading(true);
         try {
             const response = await axios.get(`/api/social/users/search?query=${searchQuery}`);
-            setSearchResults(response.data.users);
+            setSearchResults(
+
+    Array.isArray(
+        response?.data?.users
+    )
+
+        ? response.data.users
+
+        : []
+);
         } catch (error) {
             console.error('Error searching users:', error);
             showError('Failed to search users');
@@ -82,17 +171,70 @@ const FriendsSystem = () => {
         }
     };
 
-    const respondToRequest = async (requestId, action) => {
-        try {
-            await axios.post('/api/social/friends/respond', { requestId, action });
-            showSuccess(`Friend request ${action === 'accept' ? 'accepted' : 'declined'}!`);
-            fetchPendingRequests();
-            fetchFriends();
-        } catch (error) {
-            console.error('Error responding to request:', error);
-            showError('Failed to respond to request');
-        }
-    };
+    const respondToRequest = async (
+    requestId,
+    action
+) => {
+
+    try {
+
+        // REMOVE REQUEST IMMEDIATELY
+        setPendingRequests(prev => ({
+
+            ...prev,
+
+            received:
+                prev.received.filter(
+                    request =>
+                        request._id !== requestId
+                )
+        }));
+
+        await axios.post(
+
+            "/api/social/friends/respond",
+
+            {
+                requestId,
+                action
+            }
+        );
+
+        showSuccess(
+
+            `Friend request ${
+                action === "accept"
+                    ? "accepted"
+                    : "declined"
+            } successfully!`
+        );
+
+        // REFRESH DATA
+        await Promise.all([
+
+            fetchPendingRequests(),
+
+            fetchFriends()
+        ]);
+
+    } catch (error) {
+
+        console.error(
+            "Error responding to request:",
+            error
+        );
+
+        // RESTORE REQUESTS ON FAILURE
+        fetchPendingRequests();
+
+        showError(
+
+            error?.response?.data?.message ||
+
+            "Failed to respond to request"
+        );
+    }
+};
 
     const removeFriend = async (friendId) => {
         try {
@@ -212,7 +354,7 @@ const FriendsSystem = () => {
                 <div className="request-actions">
                     <button
                         className="accept-btn"
-                        onClick={() => respondToRequest(request._id, 'accept')}
+                        onClick={(e) => { e.currentTarget.disabled = true; respondToRequest(request._id,"accept");}}
                     >
                         Accept
                     </button>

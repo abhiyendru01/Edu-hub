@@ -35,7 +35,7 @@
   --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
   --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
   --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-  --shadow-glass: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  --shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.63);
 
   /* Enhanced transition system */
   --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -44,7 +44,7 @@
   --transition-bounce: 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
   /* Default theme - Enhanced Dark */
-  --bg-dark: #0a0e1a;
+  --bg-dark: #000000;
   --bg-secondary: #141b2e;
   --bg-tertiary: #1a2332;
   --card-bg: rgba(26, 35, 50, 0.85);
@@ -57,8 +57,8 @@
   --text-disabled: #64748b;
   --text-muted-transparent: rgba(148, 163, 184, 0.3);
 
-  --accent: #6366f1;
-  --accent2: #8b5cf6;
+  --accent: #b1aea4;
+  --accent2: #d6d090;
   --accent-light: rgba(99, 102, 241, 0.15);
   --accent-light-transparent: rgba(99, 102, 241, 0.15);
   --accent2-transparent: rgba(139, 92, 246, 0.15);
@@ -70,7 +70,7 @@
   --accent2-transparent-05: rgba(139, 92, 246, 0.05);
   --accent2-transparent-08: rgba(139, 92, 246, 0.08);
   --accent2-transparent-15: rgba(139, 92, 246, 0.15);
-  --accent-hover: #5855eb;
+  --accent-hover: #0a0a1b;
 
   --success: #10b981;
   --success-light: rgba(16, 185, 129, 0.15);
@@ -82,7 +82,7 @@
   --danger-transparent-30: rgba(239, 68, 68, 0.3);
   --danger-transparent-40: rgba(239, 68, 68, 0.4);
   --danger-transparent-60: rgba(239, 68, 68, 0.6);
-  --info: #06b6d4;
+  --info: #4b4a41;
   --info-light: rgba(6, 182, 212, 0.15);
 
   --white-transparent-05: rgba(255, 255, 255, 0.05);
@@ -213,45 +213,97 @@
 
 /* Enhanced Dark theme */
 :root[data-theme="Dark"] {
-  --bg-dark: #0f0f0f;
-  --bg-secondary: #1a1a1a;
-  --card-bg: rgba(30, 30, 30, 0.9);
-  --card-bg-glass: rgba(255, 255, 255, 0.04);
-  --card-border: rgba(255, 255, 255, 0.1);
-  --text-color: #f8fafc;
+  /* ===== Base Backgrounds ===== */
+  --bg-dark: #0b0b0c;
+  --bg-secondary: #141416;
+  --bg-tertiary: #1b1b1f;
+
+  /* ===== Glass / Cards ===== */
+  --card-bg: rgba(20, 20, 22, 0.92);
+  --card-bg-glass: rgba(255, 215, 120, 0.04);
+  --card-border: rgba(255, 215, 120, 0.12);
+
+  /* ===== Text ===== */
+  --text-color: #f5f5f4;
   --text-light: #ffffff;
   --text-muted: #a1a1aa;
-  --accent: #3b82f6;
-  --accent2: #8b5cf6;
-  --accent-light: rgba(59, 130, 246, 0.15);
+
+  /* ===== Luxury Golden Accent ===== */
+  --accent: #d4a017;
+  --accent2: #facc15;
+  --accent-light: rgba(212, 160, 23, 0.15);
+
+  /* ===== Status Colors ===== */
   --success: #22c55e;
-  --warning: #eab308;
+  --warning: #facc15;
   --danger: #ef4444;
-  --info: #06b6d4;
-  --border-color: rgba(255, 255, 255, 0.12);
-  --color-sidebar-gradient-start: #0f0f0f;
-  --color-sidebar-gradient-end: #1a1a1a;
+  --info: #38bdf8;
+
+  /* ===== Borders & Shadows ===== */
+  --border-color: rgba(255, 215, 120, 0.1);
+
+  --color-sidebar-gradient-start: #0b0b0c;
+  --color-sidebar-gradient-end: #161618;
+
+  --color-sidebar-shadow: rgba(0, 0, 0, 0.65);
+
+  /* ===== Typography ===== */
   --color-text-primary: var(--text-color);
-  --color-title: var(--text-light);
+  --color-title: #fffbea;
+
+  /* ===== Accent UI ===== */
   --color-accent: var(--accent);
-  --color-link-hover-bg: rgba(59, 130, 246, 0.2);
-  --color-link-hover-shadow: rgba(0, 0, 0, 0.3);
-  --color-scrollbar-thumb: var(--accent);
-  --color-scrollbar-track: var(--bg-secondary);
-  --color-sidebar-shadow: rgba(0, 0, 0, 0.6);
 
-  --color-logout-bg: var(--danger);
-  --color-logout-hover-bg: #dc2626;
+  --color-link-hover-bg: rgba(212, 160, 23, 0.12);
+  --color-link-hover-shadow: rgba(212, 160, 23, 0.18);
+
+  /* ===== Scrollbar ===== */
+  --color-scrollbar-thumb: linear-gradient(
+    180deg,
+    #facc15,
+    #d4a017
+  );
+
+  --color-scrollbar-track: #111114;
+
+  /* ===== Logout ===== */
+  --color-logout-bg: #7f1d1d;
+  --color-logout-hover-bg: #991b1b;
   --color-logout-text: #ffffff;
-  --color-logout-hover-shadow: rgba(0, 0, 0, 0.3);
+  --color-logout-hover-shadow: rgba(0, 0, 0, 0.35);
 
-  --color-toggle-bg: rgba(15, 15, 15, 0.9);
-  --color-toggle-hover-bg: rgba(59, 130, 246, 0.2);
-  --color-toggle-text: #ffffff;
-  --color-toggle-shadow: rgba(0, 0, 0, 0.3);
+  /* ===== Toggle Button ===== */
+  --color-toggle-bg: rgba(20, 20, 22, 0.95);
+  --color-toggle-hover-bg: rgba(212, 160, 23, 0.12);
+  --color-toggle-text: #fefce8;
+  --color-toggle-shadow: rgba(0, 0, 0, 0.4);
 
-  --color-close-btn: var(--text-light);
+  /* ===== Close Button ===== */
+  --color-close-btn: #f5f5f4;
   --color-close-btn-hover: #f87171;
+
+  /* ===== Extra Premium Effects ===== */
+  --glass-blur: blur(18px);
+
+  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.25);
+
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.35);
+
+  --shadow-gold: 0 0 20px rgba(212, 160, 23, 0.18);
+
+  --gradient-primary: linear-gradient(
+    135deg,
+    #facc15 0%,
+    #d4a017 50%,
+    #b8860b 100%
+  );
+
+  --gradient-dark: linear-gradient(
+    135deg,
+    #0b0b0c 0%,
+    #141416 50%,
+    #1c1c21 100%
+  );
 }
 
 /* Enhanced Light theme - Ultra Bright & Clean */

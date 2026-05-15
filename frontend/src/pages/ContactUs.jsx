@@ -8,7 +8,7 @@ import "./contact.css";
 export default function ContactUs() {
     const [copiedEmail, setCopiedEmail] = useState(false);
     const { notification, showSuccess, hideNotification } = useNotification();
-    const email = "ritishsaini503@gmail.com";
+    const email = "manvi@gmail.com";
 
     const copyEmailToClipboard = () => {
         navigator.clipboard.writeText(email).then(() => {
@@ -40,7 +40,7 @@ export default function ContactUs() {
         {
             icon: "📍",
             title: "Address",
-            content: "Test City, India",
+            content: "Lovely Professional University,Phagwara",
             action: "location",
             href: "#",
             copyable: false

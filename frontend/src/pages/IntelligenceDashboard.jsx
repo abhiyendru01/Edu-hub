@@ -104,7 +104,7 @@ const IntelligenceDashboard = () => {
             >
                 <div className="header-content">
                     <div className="header-text">
-                        <h1>🧠 Intelligence Dashboard</h1>
+                        <h1>🧠 Instructor Dashboard</h1>
                         <p>AI-powered insights and personalized learning recommendations</p>
                     </div>
                     <div className="premium-badge">

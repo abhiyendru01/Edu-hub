@@ -106,9 +106,16 @@ export const respondToFriendRequest = async (req, res) => {
         }
 
         if (friendRequest.status !== "pending") {
-            logger.warn(`User ${userId} attempted to respond to already actioned friend request ${requestId}`);
-            return sendError(res, "Friend request already responded to", 400);
-        }
+
+    return sendSuccess(
+
+        res,
+
+        friendRequest,
+
+        "Friend request already processed"
+    );
+}
 
         // Update request status
         friendRequest.status = action === "accept" ? "accepted" : "declined";

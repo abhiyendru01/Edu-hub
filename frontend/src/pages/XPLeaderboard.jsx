@@ -1,236 +1,527 @@
 // src/components/XPLeaderboard.jsx
-import React, { useEffect, useState, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+
+import React, {
+    useEffect,
+    useState,
+    useCallback
+} from "react";
+
+import {
+    motion,
+    AnimatePresence
+} from "framer-motion";
+
 import axios from "../utils/axios";
+
 import Loading from "../components/Loading";
+
 import NotificationModal from "../components/NotificationModal";
-import { useNotification } from "../hooks/useNotification";
-import { useKeyboardShortcuts } from "../hooks/useKeyboardShortcuts";
+
+import { useNotification }
+    from "../hooks/useNotification";
+
 import "./Leaderboard.css";
 
 const XPLeaderboard = () => {
-    const [period, setPeriod] = useState("weekly");
-    const [data, setData] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState("");
 
-    // Notification system
-    const { notification, showError, hideNotification } = useNotification();
+    /* =========================================
+       STATE
+    ========================================= */
 
-    const fetchXPLeaderboard = useCallback(async () => {
-        setLoading(true);
-        setError("");
-        try {
-            const response = await axios.get(`/api/leaderboard/${period}`);
-            setData(response.data || []);
-        } catch (err) {
-            console.error("Error fetching XP leaderboard:", err);
-            const errorMsg = "Error fetching leaderboard data.";
-            setError(errorMsg);
-            showError(errorMsg);
-        } finally {
-            setLoading(false);
-        }
-    }, [period]);
+    const [period, setPeriod] =
+        useState("weekly");
+
+    const [data, setData] =
+        useState([]);
+
+    const [loading, setLoading] =
+        useState(true);
+
+    const [error, setError] =
+        useState("");
+
+    const {
+        notification,
+        showError,
+        hideNotification
+    } = useNotification();
+
+    /* =========================================
+       FETCH LEADERBOARD
+    ========================================= */
+
+    const fetchXPLeaderboard =
+    useCallback(async () => {
+
+    setLoading(true);
+
+    setError("");
+
+    try {
+
+        const response =
+            await axios.get(
+                `/api/leaderboard/${period}`
+            );
+
+        console.log(
+            "LEADERBOARD RESPONSE:",
+            response
+        );
+
+        const leaderboardData =
+            response?.data?.leaderboard || [];
+
+        console.log(
+            "PARSED LEADERBOARD:",
+            leaderboardData
+        );
+
+        setData(
+
+            Array.isArray(
+                leaderboardData
+            )
+
+                ? leaderboardData
+
+                : []
+        );
+
+    } catch (err) {
+
+        console.error(
+            "XP LEADERBOARD ERROR:",
+            err
+        );
+
+        const errorMsg =
+
+            err?.response?.data?.message ||
+
+            err.message ||
+
+            "Failed to load leaderboard.";
+
+        setError(errorMsg);
+
+        showError(errorMsg);
+
+    } finally {
+
+        setLoading(false);
+    }
+
+}, [period, showError]);
+
+    /* =========================================
+       LOAD
+    ========================================= */
 
     useEffect(() => {
+
         fetchXPLeaderboard();
+
     }, [fetchXPLeaderboard]);
 
-    const handlePeriodChange = (newPeriod) => {
-        setPeriod(newPeriod);
-    };
+    /* =========================================
+       ANIMATIONS
+    ========================================= */
 
     const containerVariants = {
-        hidden: { opacity: 0 },
+
+        hidden: {
+            opacity: 0
+        },
+
         visible: {
+
             opacity: 1,
+
             transition: {
-                staggerChildren: 0.1,
-                delayChildren: 0.2
+
+                staggerChildren: 0.08,
+
+                delayChildren: 0.15
             }
         }
     };
 
     const itemVariants = {
-        hidden: { y: 30, opacity: 0 },
+
+        hidden: {
+
+            opacity: 0,
+
+            y: 20
+        },
+
         visible: {
+
+            opacity: 1,
+
             y: 0,
-            opacity: 1,
-            transition: { duration: 0.5, ease: "easeOut" }
+
+            transition: {
+
+                duration: 0.4,
+
+                ease: "easeOut"
+            }
         }
     };
 
-    const tableRowVariants = {
-        hidden: { x: -50, opacity: 0 },
-        visible: {
-            x: 0,
-            opacity: 1,
-            transition: { duration: 0.4, ease: "easeOut" }
-        }
-    };
-
-    const getRankColor = (index) => {
-        switch (index) {
-            case 0: return "#ffd700"; // Gold
-            case 1: return "#c0c0c0"; // Silver
-            case 2: return "#cd7f32"; // Bronze
-            default: return "#6366f1";
-        }
-    };
+    /* =========================================
+       HELPERS
+    ========================================= */
 
     const getRankIcon = (index) => {
+
         switch (index) {
-            case 0: return "🥇";
-            case 1: return "🥈";
-            case 2: return "🥉";
-            default: return "🏆";
+
+            case 0:
+                return "🥇";
+
+            case 1:
+                return "🥈";
+
+            case 2:
+                return "🥉";
+
+            default:
+                return "🏆";
         }
     };
 
+    /* =========================================
+       UI
+    ========================================= */
+
     return (
+
         <motion.div
+
             className="leaderboard-container"
-            initial="hidden"
-            animate="visible"
+
             variants={containerVariants}
+
+            initial="hidden"
+
+            animate="visible"
         >
+
+            {/* =========================================
+               HEADER
+            ========================================= */}
+
             <motion.h2
                 variants={itemVariants}
-                whileHover={{ scale: 1.02 }}
             >
-                🔥 XP Leaderboard ({period === "weekly" ? "Weekly" : "Monthly"})
+                🔥 XP Leaderboard
             </motion.h2>
 
+            {/* =========================================
+               FILTER BUTTONS
+            ========================================= */}
+
             <motion.div
+
                 className="leaderboard-buttons"
+
                 variants={itemVariants}
-                role="group"
-                aria-label="Leaderboard period filter"
             >
-                <motion.button
-                    onClick={() => handlePeriodChange("weekly")}
-                    className={period === "weekly" ? "active" : ""}
-                    whileHover={{ scale: 1.05, y: -2 }}
-                    whileTap={{ scale: 0.95 }}
-                    transition={{ duration: 0.2 }}
-                    aria-label="Show weekly XP leaderboard"
-                    aria-pressed={period === "weekly"}
+
+                <button
+
+                    onClick={() =>
+                        setPeriod("weekly")
+                    }
+
+                    className={
+                        period === "weekly"
+                            ? "active"
+                            : ""
+                    }
                 >
                     Weekly
-                </motion.button>
-                <motion.button
-                    onClick={() => handlePeriodChange("monthly")}
-                    className={period === "monthly" ? "active" : ""}
-                    whileHover={{ scale: 1.05, y: -2 }}
-                    whileTap={{ scale: 0.95 }}
-                    transition={{ duration: 0.2 }}
-                    aria-label="Show monthly XP leaderboard"
-                    aria-pressed={period === "monthly"}
+                </button>
+
+                <button
+
+                    onClick={() =>
+                        setPeriod("monthly")
+                    }
+
+                    className={
+                        period === "monthly"
+                            ? "active"
+                            : ""
+                    }
                 >
                     Monthly
-                </motion.button>
+                </button>
+
             </motion.div>
 
+            {/* =========================================
+               CONTENT
+            ========================================= */}
+
             <AnimatePresence mode="wait">
+
+                {/* LOADING */}
+
                 {loading ? (
-                    <Loading fullScreen={false} size="medium" key="loading" />
+
+                    <Loading
+                        fullScreen={false}
+                        size="medium"
+                    />
+
                 ) : error ? (
+
+                    /* ERROR */
+
                     <motion.div
+
                         className="error-container"
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        key="error"
+
+                        initial={{
+                            opacity: 0
+                        }}
+
+                        animate={{
+                            opacity: 1
+                        }}
+
+                        exit={{
+                            opacity: 0
+                        }}
                     >
-                        <p className="error-message">{error}</p>
+
+                        <p className="error-message">
+                            {error}
+                        </p>
+
                     </motion.div>
-                ) : data.length > 0 ? (
+
+                ) : Array.isArray(data) &&
+                  data.length > 0 ? (
+
+                    /* TABLE */
+
                     <motion.div
+
                         className="leaderboard-table"
+
                         variants={itemVariants}
-                        key="leaderboard-content"
                     >
-                        <motion.table
-                            initial={{ opacity: 0, scale: 0.95 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.5 }}
-                        >
-                            <motion.thead
-                                initial={{ opacity: 0, y: -20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.3 }}
-                            >
+
+                        <table>
+
+                            <thead>
+
                                 <tr>
-                                    <th>Rank</th>
-                                    <th>Username</th>
-                                    <th>Total XP</th>
+
+                                    <th>
+                                        Rank
+                                    </th>
+
+                                    <th>
+                                        Username
+                                    </th>
+
+                                    <th>
+                                        XP
+                                    </th>
+
+                                    <th>
+                                        Level
+                                    </th>
+
                                 </tr>
-                            </motion.thead>
-                            <motion.tbody>
-                                <AnimatePresence>
-                                    {data.map((user, index) => (
-                                        <motion.tr
-                                            key={`${user.username}-${index}`}
-                                            variants={tableRowVariants}
-                                            initial="hidden"
-                                            animate="visible"
-                                            whileHover={{
-                                                backgroundColor: "rgba(99, 102, 241, 0.05)",
-                                                scale: 1.01
-                                            }}
-                                            transition={{ duration: 0.2 }}
-                                            custom={index}
+
+                            </thead>
+
+                            <tbody>
+
+                                {data.map(
+                                    (
+                                        user,
+                                        index
+                                    ) => (
+
+                                    <motion.tr
+
+                                        key={
+                                            user?.userId ||
+                                            index
+                                        }
+
+                                        initial={{
+                                            opacity: 0,
+                                            x: -20
+                                        }}
+
+                                        animate={{
+                                            opacity: 1,
+                                            x: 0
+                                        }}
+
+                                        transition={{
+                                            delay:
+                                                index *
+                                                0.05
+                                        }}
+
+                                        whileHover={{
+                                            scale: 1.01
+                                        }}
+                                    >
+
+                                        {/* RANK */}
+
+                                        <td
+                                            className="rank-cell"
                                         >
-                                            <motion.td
-                                                className="rank-cell"
-                                                whileHover={{
-                                                    scale: 1.2,
-                                                    color: getRankColor(index)
-                                                }}
-                                            >
-                                                <span className="rank-icon">{getRankIcon(index)}</span>
-                                                #{index + 1}
-                                            </motion.td>
-                                            <motion.td
-                                                className="username-cell"
-                                                whileHover={{ x: 5, color: "#6366f1" }}
-                                            >
-                                                {user.username}
-                                            </motion.td>
-                                            <motion.td
-                                                className="xp-cell"
-                                                whileHover={{ scale: 1.1, color: "#d946ef" }}
-                                            >
-                                                <span className="xp-value">{Math.round(user.xp)} XP</span>
-                                            </motion.td>
-                                        </motion.tr>
-                                    ))}
-                                </AnimatePresence>
-                            </motion.tbody>
-                        </motion.table>
+
+                                            <span className="rank-icon">
+
+                                                {
+                                                    getRankIcon(
+                                                        index
+                                                    )
+                                                }
+
+                                            </span>
+
+                                            #{index + 1}
+
+                                        </td>
+
+                                        {/* USERNAME */}
+
+                                        <td
+                                            className="username-cell"
+                                        >
+
+                                            {
+                                                user?.username ||
+
+                                                user?.name ||
+
+                                                "Unknown User"
+                                            }
+
+                                        </td>
+
+                                        {/* XP */}
+
+                                        <td
+                                            className="xp-cell"
+                                        >
+
+                                            <span className="xp-value">
+
+                                                {
+                                                    Math.round(
+                                                        user?.xp || 0
+                                                    )
+                                                }
+
+                                                {" "}XP
+
+                                            </span>
+
+                                        </td>
+
+                                        {/* LEVEL */}
+
+                                        <td>
+
+                                            LVL {" "}
+
+                                            {
+                                                user?.level || 1
+                                            }
+
+                                        </td>
+
+                                    </motion.tr>
+                                ))}
+
+                            </tbody>
+
+                        </table>
+
                     </motion.div>
+
                 ) : (
+
+                    /* EMPTY */
+
                     <motion.div
+
                         className="no-data"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        key="no-data"
+
+                        initial={{
+                            opacity: 0,
+                            y: 10
+                        }}
+
+                        animate={{
+                            opacity: 1,
+                            y: 0
+                        }}
                     >
-                        <div className="no-data-icon">📊</div>
-                        <p>No XP data available.</p>
-                        <p className="no-data-subtitle">Start taking quizzes to earn XP!</p>
+
+                        <div className="no-data-icon">
+                            📊
+                        </div>
+
+                        <p>
+                            No XP data available.
+                        </p>
+
+                        <p className="no-data-subtitle">
+
+                            Start taking quizzes
+                            to earn XP!
+
+                        </p>
+
                     </motion.div>
                 )}
+
             </AnimatePresence>
 
-            {/* Notification Modal */}
+            {/* =========================================
+               NOTIFICATIONS
+            ========================================= */}
+
             <NotificationModal
-                isOpen={notification.isOpen}
-                message={notification.message}
-                type={notification.type}
-                onClose={hideNotification}
-                autoClose={notification.autoClose}
+
+                isOpen={
+                    notification.isOpen
+                }
+
+                message={
+                    notification.message
+                }
+
+                type={
+                    notification.type
+                }
+
+                onClose={
+                    hideNotification
+                }
+
+                autoClose={
+                    notification.autoClose
+                }
             />
+
         </motion.div>
     );
 };

@@ -488,7 +488,7 @@ const Home = () => {
                         aria-label="Start a new quiz"
                     >
                         <span className="btn-icon">🚀</span>
-                        <span className="btn-text">Start Quiz</span>
+                        <span className="btn-text ">Start Quiz</span>
                     </motion.button>
 
                     {(user?.role === "premium") && (

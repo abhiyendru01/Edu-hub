@@ -50,6 +50,8 @@ export const getLearningPaths = async (req, res) => {
     }
 };
 
+
+
 // Get specific learning path with detailed progress
 export const getLearningPath = async (req, res) => {
     try {
