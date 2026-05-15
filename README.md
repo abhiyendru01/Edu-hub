@@ -44,8 +44,8 @@ A full-stack quiz platform built using the MERN stack with authentication, quiz 
 ### Clone Repository
 
 ```bash
-git clone https://github.com/yourusername/quiz-app.git
-cd quiz-app
+git clone https://github.com/abhiyendru01/Edu-hub.git
+cd Edu-hub
 ```
 
 ## Backend Setup
@@ -113,7 +113,7 @@ PUT    /api/users/profile
 ## Project Structure
 
 ```bash
-Quiz-App/
+Edu-hub/
 │
 ├── backend/
 │   ├── controllers/
@@ -137,11 +137,9 @@ Quiz-App/
 Frontend:
 
 * Vercel
-* Netlify
 
 Backend:
 
-* Render
 * Railway
 
 Database:
