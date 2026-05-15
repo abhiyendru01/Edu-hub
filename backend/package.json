@@ -1,14 +1,14 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "QuizNest backend - REST API for quiz generation, user auth, and admin control",
+  "description": "Edu-Hub backend - REST API for quiz generation, user auth, and admin control",
   "main": "index.js",
   "type": "module",
   "author": "",
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "https://github.com/MaXiMo000/Quiz-App"
+    "url": "https://github.com/abhiyendru01/Edu-hub"
   },
   "scripts": {
     "test": "npx jest --maxWorkers=1",

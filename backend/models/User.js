@@ -6,7 +6,7 @@ const userSchema = new mongoose.Schema({
     password: { type: String, required: false },
     bio:      { type: String, default: "" },
     avatarUrl: { type: String, default: "" },
-    role:     { type: String, enum: ["admin", "user", "premium" , "instructor"], default: "user" },
+    role:     { type: String, enum: ["admin", "user", "premium" , "instructor" , "student"], default: "user" },
     badges: { type: [String], default: [] },
     xp:       { type: Number, default: 0 },          // total XP
     totalXP: { type: Number, default: 0 },

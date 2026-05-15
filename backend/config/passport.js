@@ -81,7 +81,7 @@ passport.use(
                     user = new UserQuiz({
                         name: profile.displayName,
                         email: email,
-                        role: "student",
+                        role: "user",
                         // Explicitly set default values to ensure they exist
                         xp: 0,
                         totalXP: 0,
