@@ -7,7 +7,7 @@
     align-items: center;
     justify-content: center;
     z-index: 9999;
-    background: var(--bg-dark);
+    background: black;
 }
 
 .loading-fullscreen {
@@ -19,6 +19,7 @@
     width: 100vw;
     height: 100vh;
     min-height: 100vh;
+    background-color: black;
     overflow: hidden;
     display: flex;
     align-items: center;
@@ -52,7 +53,7 @@
 .loading-orb-1 {
     width: 400px;
     height: 400px;
-    background: var(--gradient-primary);
+    background: black;
     top: 10%;
     left: 10%;
     animation-delay: 0s;
@@ -61,7 +62,7 @@
 .loading-orb-2 {
     width: 350px;
     height: 350px;
-    background: var(--gradient-primary);
+    background: black;
     top: 60%;
     right: 15%;
     animation-delay: 2.5s;
@@ -70,7 +71,7 @@
 .loading-orb-3 {
     width: 300px;
     height: 300px;
-    background: var(--gradient-primary);
+    background: rgb(0, 0, 0);
     bottom: 20%;
     left: 50%;
     animation-delay: 5s;
@@ -79,7 +80,7 @@
 .loading-orb-4 {
     width: 250px;
     height: 250px;
-    background: var(--gradient-primary);
+    background: black;
     top: 50%;
     left: 30%;
     animation-delay: 7.5s;
@@ -185,7 +186,7 @@
 
 /* Glass Card - Larger and More Prominent */
 .loading-glass-card {
-    background: var(--card-bg-glass);
+    background: rgba(0, 0, 0, 0.562);
     backdrop-filter: blur(30px);
     -webkit-backdrop-filter: blur(30px);
     border: 1px solid var(--card-border);
@@ -194,8 +195,8 @@
     box-shadow:
         var(--shadow-2xl),
         0 0 0 1px var(--glass-border) inset,
-        0 0 120px var(--accent-light),
-        inset 0 0 60px var(--accent-light);
+        0 0 120px black,
+        inset 0 0 60px black;
     position: relative;
     overflow: visible;
     display: flex;
@@ -213,8 +214,8 @@
         box-shadow:
             var(--shadow-2xl),
             0 0 0 1px var(--glass-border) inset,
-            0 0 150px var(--accent-light),
-            inset 0 0 80px var(--accent-light);
+            0 0 150px black,
+            inset 0 0 80px black;
     }
 }
 
@@ -225,8 +226,8 @@
         box-shadow:
             var(--shadow-2xl),
             0 0 0 2px var(--glass-border) inset,
-            0 0 180px var(--accent-light),
-            inset 0 0 100px var(--accent-light);
+            0 0 180px black,
+            inset 0 0 100px rgba(0, 0, 0, 0.603);
     }
 }
 
@@ -240,7 +241,7 @@
     background: linear-gradient(
         45deg,
         transparent 30%,
-        var(--glass-border) 50%,
+        rgba(0, 0, 0, 0.315) 50%,
         transparent 70%
     );
     animation: shimmer 4s infinite;
@@ -338,7 +339,7 @@
     );
     filter: drop-shadow(0 0 25px var(--accent-light));
     box-shadow:
-        0 0 40px var(--accent-light),
+        0 0 40px black,
         inset 0 0 25px var(--accent-light);
 }
 
@@ -362,7 +363,7 @@
         from 90deg,
         var(--info) 0%,
         var(--info) 50%,
-        var(--accent) 100%
+        black 100%
     );
     filter: drop-shadow(0 0 20px var(--info-light));
     box-shadow:
@@ -388,7 +389,7 @@
     border-radius: 50%;
     box-shadow:
         0 0 30px var(--text-light),
-        0 0 60px var(--accent-light),
+        0 0 60px black,
         0 0 90px var(--accent-light),
         inset 0 0 15px var(--glass-border);
 }

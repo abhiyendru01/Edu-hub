@@ -1,7 +1,7 @@
 .real-time-quiz {
     min-height: calc(100vh - 120px);
     padding: 20px;
-    background: var(--gradient-primary);
+    background: rgb(22, 22, 22);
     background-attachment: fixed;
 }
 
