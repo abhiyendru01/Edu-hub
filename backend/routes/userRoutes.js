@@ -211,7 +211,9 @@ router.get(
             // 🔒 SECURITY: Store user data in session instead of URL
             // Only pass the token through URL, user data retrieved via API call
             const frontendURL = process.env.FRONTEND_URL || "http://localhost:5173";
-            res.redirect(`${frontendURL}/google-auth?token=${token}`);
+            res.redirect(
+   `${frontendURL}/dashboard?token=${token}`
+);
         } catch (error) {
             logger.error({ message: "Error saving IP address for Google OAuth login", error: error.message, stack: error.stack });
             // Still redirect even if IP save fails
