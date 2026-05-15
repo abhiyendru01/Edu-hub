@@ -140,17 +140,7 @@ if (!JWT_SECRET) {
 export const registerUser = async (req, res) => {
     logger.info(`Attempting to register user with email: ${req.body.email}`);
     try {
-        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[A-Za-z]{2,}$/;
-
-if (!emailRegex.test(email)) {
-    logger.warn(`Registration failed: Invalid email format: ${email}`);
-
-    return sendValidationError(
-        res,
-        { email: "Please enter a valid email address" },
-        "Invalid email format"
-    );
-}
+        const { name, email, password } = req.body;
 
         const existingUser = await UserQuiz.findOne({ email: email.toLowerCase() });
         if (existingUser) {
